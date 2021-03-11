@@ -36,7 +36,7 @@ public class MyDB {
             stmnt.execute("CREATE TABLE MYUSER(" 
                     + " UserId CHAR(6) CONSTRAINT PK_CUSTOMER PRIMARY KEY, " 
                     + " Name CHAR(30), Password CHAR(6), Email CHAR(30), "
-                    + "Phone CHAR(10), Address CHAR(60), " 
+                    + " Phone CHAR(10), Address CHAR(60), " 
                     + " SecQn CHAR(60), SecAns CHAR(60))");
         } catch (SQLException ex) {
             while (ex != null) {
@@ -156,6 +156,38 @@ public class MyDB {
         false (and does not create the record)
         */
         
+        Connection cnnct = null;
+        Statement stmnt = null;
+        try {
+            cnnct = getConnection();
+            stmnt = cnnct.createStatement();
+            if (stmnt.execute("SELECT * FROM MYUSER WHERE UserId = '"+myuser.getUserid()+"'"))
+            {
+                return false;
+            }
+        }
+        
+        catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (stmnt != null) {
+                try {
+                    stmnt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (cnnct != null) {
+                try {
+                    cnnct.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+        }  
         return true;
     }
     

@@ -6,6 +6,7 @@
 package ed.jdbc;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -18,6 +19,7 @@ public class SetUpMyUser {
      */
     public static void main(String[] args) {
         MyDB mydb = new MyDB();
+        int choice = 0;
         /**
          * drop table first for a clean start* may cause error if table does not
          * exist
@@ -25,17 +27,45 @@ public class SetUpMyUser {
         mydb.dropMyuserTable();
         mydb.createMyuserTable();
         ArrayList<Myuser> aList = prepareMyuserData();
-        for (Myuser muser: aList)
+        
+        while(choice !=4)
+        {
+            menu();
+            System.out.println("\n\nPlease Select an option");
+            Scanner in = new Scanner(System.in);
+            choice = in.nextInt();
+            
+            switch(choice)
             {
-                if (mydb.createRecord(muser))
-                {
-                    mydb.addRecords(aList);
-                }
-                else 
-                {
-                    System.out.println("This User Already Exists");
-                }
+                case 1:
+                    String ID = "";
+                    String Name = "";
+                    String Password = "";
+                    String email = "";
+                    String phone = "";
+                    String address = "";
+                    String secQn = "";
+                    String secAns = "";
+                    Scanner deets = new Scanner(System.in);
+                    System.out.println("\n\nPlease Enter ID");
+                    ID = deets.nextLine();
+                    System.out.println("\n\nPlease Enter Name");
+                    Name = deets.nextLine();
+                    System.out.println("\n\nPlease Enter Password");
+                    Password = deets.nextLine();
+                    
+                   
+                    Myuser muser = new Myuser(ID,Name,Password, email, phone, address,secQn,secAns);
+                    aList.add(muser);
+                            
+                  if (mydb.createRecord(muser) == true)
+                    {
+                      System.out.println("This User Already Exists");
+                    }
+                case 2:
             }
+            mydb.addRecords(aList);
+        }
     }
 
     public static ArrayList<Myuser> prepareMyuserData() {
@@ -51,5 +81,10 @@ public class SetUpMyUser {
         myList.add(myuser4);
         myList.add(myuser5);
         return myList;
+    }
+    
+    public static void menu()
+    {
+        System.out.println("Select 1 to Add user");
     }
 }
