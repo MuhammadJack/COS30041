@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -22,8 +23,8 @@ public class MyDB {
     public static Connection getConnection() throws SQLException, IOException {
         System.setProperty("jdbc.drivers", "org.apache.derby.jdbc.ClientDriver");
         String url = "jdbc:derby://localhost/sun-appserv-samples;create=true";
-        String username = "App";
-        String password = "App";
+        String username = "APP";
+        String password = "APP";
         return DriverManager.getConnection(url, username, password);
     }
 
@@ -161,10 +162,21 @@ public class MyDB {
         try {
             cnnct = getConnection();
             stmnt = cnnct.createStatement();
-            if (stmnt.execute("SELECT * FROM MYUSER WHERE UserId = '"+myuser.getUserid()+"'"))
+            /*if(stmnt.executeQuery("SELECT * FROM MYUSER WHERE UserId = '"+myuser.getUserid()+"'"))
             {
-                return false;
+                System.out.println("returned null");
+                return true;
+            }*/
+            ResultSet rs = stmnt.executeQuery("SELECT * FROM MYUSER WHERE UserId = '"+myuser.getUserid()+"'");
+            if (!rs.isBeforeFirst())
+            {
+                return false;       
             }
+            else
+            {
+                return true;
+            }
+
         }
         
         catch (SQLException ex) {
@@ -188,7 +200,7 @@ public class MyDB {
                 }
             }
         }  
-        return true;
+        return false;
     }
     
     Boolean updateRecord (Myuser myuser)

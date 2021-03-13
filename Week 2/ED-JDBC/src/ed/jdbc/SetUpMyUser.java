@@ -49,19 +49,23 @@ public class SetUpMyUser {
                     Scanner deets = new Scanner(System.in);
                     System.out.println("\n\nPlease Enter ID");
                     ID = deets.nextLine();
-                    System.out.println("\n\nPlease Enter Name");
+                    /*System.out.println("\n\nPlease Enter Name");
                     Name = deets.nextLine();
                     System.out.println("\n\nPlease Enter Password");
-                    Password = deets.nextLine();
+                    Password = deets.nextLine();*/
                     
                    
                     Myuser muser = new Myuser(ID,Name,Password, email, phone, address,secQn,secAns);
-                    aList.add(muser);
-                            
-                  if (mydb.createRecord(muser) == true)
+
+                  if (mydb.createRecord(muser)==false)
                     {
-                      System.out.println("This User Already Exists");
+                        aList.add(muser);
+                      
                     }
+                  else
+                  {
+                      System.out.println("This User Already Exists");
+                  }
                 case 2:
             }
             mydb.addRecords(aList);
