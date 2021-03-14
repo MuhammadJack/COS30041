@@ -159,9 +159,11 @@ public class MyDB {
         
         Connection cnnct = null;
         Statement stmnt = null;
+        PreparedStatement pStmnt = null;
+        
         try {
             cnnct = getConnection();
-            stmnt = cnnct.createStatement();
+            stmnt = cnnct.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             /*if(stmnt.executeQuery("SELECT * FROM MYUSER WHERE UserId = '"+myuser.getUserid()+"'"))
             {
                 System.out.println("returned null");
@@ -170,13 +172,27 @@ public class MyDB {
             ResultSet rs = stmnt.executeQuery("SELECT * FROM MYUSER WHERE UserId = '"+myuser.getUserid()+"'");
             if (!rs.isBeforeFirst())
             {
-                return false;       
+                String preQueryStatement = "INSERT INTO MYUSER VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                pStmnt = cnnct.prepareStatement(preQueryStatement);
+                pStmnt.setString(1, myuser.getUserid());
+                pStmnt.setString(2, myuser.getName());
+                pStmnt.setString(3, myuser.getPassword());
+                pStmnt.setString(4, myuser.getEmail());
+                pStmnt.setString(5, myuser.getPhone());
+                pStmnt.setString(6, myuser.getAddress());
+                pStmnt.setString(7, myuser.getSecQn());
+                pStmnt.setString(8, myuser.getSecAns());
+                int rowCount = pStmnt.executeUpdate();
+                if (rowCount == 0) 
+                {
+                    throw new SQLException("Cannot insert records!");
+                }
+                return true;  
             }
             else
             {
-                return true;
+                return false;
             }
-
         }
         
         catch (SQLException ex) {

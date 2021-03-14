@@ -27,6 +27,7 @@ public class SetUpMyUser {
         mydb.dropMyuserTable();
         mydb.createMyuserTable();
         ArrayList<Myuser> aList = prepareMyuserData();
+        mydb.addRecords(aList);
         
         while(choice !=4)
         {
@@ -57,18 +58,18 @@ public class SetUpMyUser {
                    
                     Myuser muser = new Myuser(ID,Name,Password, email, phone, address,secQn,secAns);
 
-                  if (mydb.createRecord(muser)==false)
+                  if (mydb.createRecord(muser))
                     {
                         aList.add(muser);
-                      
+                        System.out.println("successfully created new user");
                     }
-                  else
-                  {
-                      System.out.println("This User Already Exists");
-                  }
+                    else
+                    {
+                        System.out.println("This User Already Exists");
+                    }
                 case 2:
             }
-            mydb.addRecords(aList);
+            
         }
     }
 
@@ -90,5 +91,6 @@ public class SetUpMyUser {
     public static void menu()
     {
         System.out.println("Select 1 to Add user");
+        System.out.println("Select 1 to update user");
     }
 }
