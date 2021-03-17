@@ -20,8 +20,7 @@ public class Myuser {
     private String secQn;
     private String secAns;
 
-    public Myuser(String userid, String name, String password, String email, String phone, String address, String secQn, String secAns) 
-    {
+    public Myuser(String userid, String name, String password, String email, String phone, String address, String secQn, String secAns) {
         this.userid = userid;
         this.name = name;
         this.password = password;
@@ -95,7 +94,5 @@ public class Myuser {
     public void setSecAns(String secAns) {
         this.secAns = secAns;
     }
-    
-    
 
 }

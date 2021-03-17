@@ -19,6 +19,16 @@ public class SetUpMyUser {
      */
     public static void main(String[] args) {
         MyDB mydb = new MyDB();
+        String ID = "";
+        String Name = "";
+        String Password = "";
+        String email = "";
+        String phone = "";
+        String address = "";
+        String secQn = "";
+        String secAns = "";
+        Scanner deets = new Scanner(System.in);
+
         int choice = 0;
         /**
          * drop table first for a clean start* may cause error if table does not
@@ -28,48 +38,74 @@ public class SetUpMyUser {
         mydb.createMyuserTable();
         ArrayList<Myuser> aList = prepareMyuserData();
         mydb.addRecords(aList);
-        
-        while(choice !=4)
-        {
+
+        while (choice != 4) {
             menu();
             System.out.println("\n\nPlease Select an option");
             Scanner in = new Scanner(System.in);
             choice = in.nextInt();
-            
-            switch(choice)
-            {
+
+            switch (choice) {
                 case 1:
-                    String ID = "";
-                    String Name = "";
-                    String Password = "";
-                    String email = "";
-                    String phone = "";
-                    String address = "";
-                    String secQn = "";
-                    String secAns = "";
-                    Scanner deets = new Scanner(System.in);
                     System.out.println("\n\nPlease Enter ID");
                     ID = deets.nextLine();
                     /*System.out.println("\n\nPlease Enter Name");
                     Name = deets.nextLine();
                     System.out.println("\n\nPlease Enter Password");
-                    Password = deets.nextLine();*/
-                    
-                   
-                    Myuser muser = new Myuser(ID,Name,Password, email, phone, address,secQn,secAns);
+                    Password = deets.nextLine();
+                    System.out.println("\n\nPlease Enter Email");
+                    email = deets.nextLine();
+                    System.out.println("\n\nPlease Enter phone");
+                    phone = deets.nextLine();
+                    System.out.println("\n\nPlease Enter address");
+                    address = deets.nextLine();
+                    System.out.println("\n\nPlease Enter Secret Question");
+                    secQn = deets.nextLine();
+                    System.out.println("\n\nPlease Enter Answer to " + secQn);
+                    secAns = deets.nextLine();
+                     */
 
-                  if (mydb.createRecord(muser))
-                    {
+                    Myuser muser = new Myuser(ID, Name, Password, email, phone, address, secQn, secAns);
+
+                    if (mydb.createRecord(muser)) {
                         aList.add(muser);
                         System.out.println("successfully created new user");
-                    }
-                    else
-                    {
+                    } else {
                         System.out.println("This User Already Exists");
                     }
+                    break;
                 case 2:
+                    System.out.println("\n\nPlease Enter ID of user to be updated");
+                    ID = deets.nextLine();
+                    System.out.println("\n\nPlease Enter Name");
+                    Name = deets.nextLine();
+                    /*System.out.println("\n\nPlease Enter Password");
+                    Password = deets.nextLine();
+                    System.out.println("\n\nPlease Enter Email");
+                    email = deets.nextLine();
+                    System.out.println("\n\nPlease Enter phone");
+                    phone = deets.nextLine();
+                    System.out.println("\n\nPlease Enter address");
+                    address = deets.nextLine();
+                    System.out.println("\n\nPlease Enter Secret Question");
+                    secQn = deets.nextLine();
+                    System.out.println("\n\nPlease Enter Answer to " + secQn);
+                    secAns = deets.nextLine();
+                     */
+                    Myuser updateuser = new Myuser(ID, Name, Password, email, phone, address, secQn, secAns);
+                    mydb.updateRecord(updateuser);
+                    System.out.println("successfully updated user");
+                    break;
+                case 3:
+                    System.out.println("\n\nPlease Enter ID of user to be deleted");
+                    ID = deets.nextLine();
+                    Myuser deleteuser = new Myuser(ID, Name, Password, email, phone, address, secQn, secAns);
+                    mydb.deleteRecord(deleteuser);
+                case 4:
+                    System.out.println("Program Successfully ended");
+                default:
+                    System.out.println("invalid choice");
             }
-            
         }
     }
 
@@ -87,10 +123,11 @@ public class SetUpMyUser {
         myList.add(myuser5);
         return myList;
     }
-    
-    public static void menu()
-    {
+
+    public static void menu() {
         System.out.println("Select 1 to Add user");
-        System.out.println("Select 1 to update user");
+        System.out.println("Select 2 to update user");
+        System.out.println("Select 3 to delete user");
+        System.out.println("Select 4 to end Program");
     }
 }
