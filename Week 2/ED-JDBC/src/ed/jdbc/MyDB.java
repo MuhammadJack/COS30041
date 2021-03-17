@@ -294,10 +294,35 @@ public class MyDB {
         Connection cnnct = null;
         Statement stmnt = null;
         try {
+            String ID = "";
+            String Name = "";
+            String Password = "";
+            String email = "";
+            String phone = "";
+            String address = "";
+            String secQn = "";
+            String secAns = "";
             cnnct = getConnection();
-            stmnt = cnnct.createStatement();
-            stmnt.execute("SELECT * FROM MYUSER WHERE USERID = " + userID);
-            return true;
+            stmnt = cnnct.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmnt.executeQuery("SELECT * FROM MYUSER WHERE USERID = '" + userID + "'");
+            if (rs.isBeforeFirst()) {
+                while (rs.next()) {
+                    ID = rs.getString("USERID");
+                    Name = rs.getString("NAME");
+                    Password = rs.getString("PASSWORD");
+                    email = rs.getString("EMAIL");
+                    phone = rs.getString("PHONE");
+                    address = rs.getString("ADDRESS");
+                    secQn = rs.getString("SECQN");
+                    secAns = rs.getString("SECANS");
+
+                }
+                Myuser getuser = new Myuser(ID, Name, Password, email, phone, address, secQn, secAns);
+                return getuser;
+            } else {
+                return null;
+            }
+
         } catch (SQLException ex) {
             while (ex != null) {
                 ex.printStackTrace();

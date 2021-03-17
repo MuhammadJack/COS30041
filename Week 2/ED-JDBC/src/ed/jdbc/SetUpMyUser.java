@@ -39,7 +39,7 @@ public class SetUpMyUser {
         ArrayList<Myuser> aList = prepareMyuserData();
         mydb.addRecords(aList);
 
-        while (choice != 4) {
+        while (choice != 5) {
             menu();
             System.out.println("\n\nPlease Select an option");
             Scanner in = new Scanner(System.in);
@@ -74,6 +74,7 @@ public class SetUpMyUser {
                         System.out.println("This User Already Exists");
                     }
                     break;
+                    
                 case 2:
                     System.out.println("\n\nPlease Enter ID of user to be updated");
                     ID = deets.nextLine();
@@ -96,12 +97,38 @@ public class SetUpMyUser {
                     mydb.updateRecord(updateuser);
                     System.out.println("successfully updated user");
                     break;
+                    
                 case 3:
                     System.out.println("\n\nPlease Enter ID of user to be deleted");
                     ID = deets.nextLine();
                     Myuser deleteuser = new Myuser(ID, Name, Password, email, phone, address, secQn, secAns);
                     mydb.deleteRecord(deleteuser);
+                    break;
+                    
                 case 4:
+                    Scanner getid = new Scanner(System.in);
+                    System.out.println("\n\nPlease Enter ID");
+                    ID = getid.nextLine();
+
+                    if (mydb.getRecord(ID)!=null)
+                    {
+                        muser = mydb.getRecord(ID);
+                        System.out.println("user id = " + muser.getUserid());
+                        System.out.println("Name = " + muser.getName() );
+                        System.out.println("Password = " + muser.getPassword()); 
+                        System.out.println("Email = " + muser.getEmail());
+                        System.out.println("Phone .no = " + muser.getPhone());
+                        System.out.println("Address = "+ muser.getAddress());
+                        System.out.println("SecQn = " + muser.getSecQn());
+                        System.out.println("SecAns = " + muser.getSecAns() +"\n");
+                    }
+                    else
+                    {
+                        System.out.print("User Does not Exist");
+                    }
+                    break;
+                    
+                case 5:
                     System.out.println("Program Successfully ended");
                 default:
                     System.out.println("invalid choice");
