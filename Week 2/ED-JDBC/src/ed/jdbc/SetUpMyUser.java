@@ -101,8 +101,14 @@ public class SetUpMyUser {
                 case 3:
                     System.out.println("\n\nPlease Enter ID of user to be deleted");
                     ID = deets.nextLine();
-                    Myuser deleteuser = new Myuser(ID, Name, Password, email, phone, address, secQn, secAns);
-                    mydb.deleteRecord(deleteuser);
+                    if(mydb.deleteRecord(ID))
+                    {
+                        System.out.println("Sucessfully deleted user");
+                    }
+                    else
+                    {
+                        System.out.println("user not found, could not delete");
+                    }
                     break;
                     
                 case 4:
@@ -155,6 +161,7 @@ public class SetUpMyUser {
         System.out.println("Select 1 to Add user");
         System.out.println("Select 2 to update user");
         System.out.println("Select 3 to delete user");
-        System.out.println("Select 4 to end Program");
+        System.out.println("Select 4 to get user record");
+        System.out.println("Select 5 to end Program");
     }
 }

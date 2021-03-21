@@ -247,7 +247,7 @@ public class MyDB {
         return false;
     }
 
-    Boolean deleteRecord(Myuser myuser) {
+    Boolean deleteRecord(String userid) {
         /*
         accepts a String object whose value is the
         userId of a record to be deleted. If the record can be found, it removes the record in the database
@@ -258,9 +258,15 @@ public class MyDB {
         Statement stmnt = null;
         try {
             cnnct = getConnection();
-            stmnt = cnnct.createStatement();
-            stmnt.execute("DELETE FROM MYUSER WHERE USERID = " + myuser.getUserid());
-            return true;
+            stmnt = cnnct.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            int i = stmnt.executeUpdate("DELETE FROM MYUSER WHERE USERID = '" + userid+"'");
+            if (i==1) {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         } catch (SQLException ex) {
             while (ex != null) {
                 ex.printStackTrace();
