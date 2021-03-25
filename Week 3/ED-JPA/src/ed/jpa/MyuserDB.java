@@ -76,10 +76,8 @@ public class MyuserDB {
         try {
             if (findMyuser(userId) == null )  
             {
-                // myuser exists already
                 return null;
             }
-            // myuser does not exist in database
             
             return null;
         } 
