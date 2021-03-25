@@ -70,4 +70,22 @@ public class MyuserDB {
         myuser.setSecans(myDTO.getSecAns());
         return myuser;
     }
+    
+    public MyuserDTO getRecord(String userId)
+    { 
+        try {
+            if (findMyuser(userId) == null )  
+            {
+                // myuser exists already
+                return null;
+            }
+            // myuser does not exist in database
+            
+            return null;
+        } 
+        catch (Exception ex) 
+        {
+            throw ex;
+        }      
+    }
 }
