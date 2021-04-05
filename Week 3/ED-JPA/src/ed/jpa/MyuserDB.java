@@ -71,6 +71,19 @@ public class MyuserDB {
         return myuser;
     }
     
+    private MyuserDTO myDAO2DTO (Myuser myuser)
+    {
+        MyuserDTO TempDTO = new MyuserDTO(myuser.getUserid(),
+                                          myuser.getName(),
+                                          myuser.getPassword(),
+                                          myuser.getEmail(),
+                                          myuser.getPhone(),
+                                          myuser.getAddress(),
+                                          myuser.getSecans(),
+                                          myuser.getSecans());
+        return TempDTO;
+    }
+    
     public MyuserDTO getRecord(String userId)
     { 
         try {
@@ -78,12 +91,51 @@ public class MyuserDB {
             {
                 return null;
             }
-            
-            return null;
+            else
+            {
+                return myDAO2DTO(findMyuser(userId));
+            }
         } 
         catch (Exception ex) 
         {
             throw ex;
         }      
+    }
+    
+    boolean updateRecord(MyuserDTO myuserDTO)
+    {
+        try
+        {
+            if(myDTO2DAO(myuserDTO)!=null)
+            {
+                em.getTransaction().begin();
+                em.merge(myDTO2DAO(myuserDTO));
+                em.getTransaction().commit();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception ex) 
+        {
+            throw ex;
+        }      
+    }
+    
+    boolean deleteRecord(String userId)
+    {
+        if (findMyuser(userId) != null)
+        {
+            em.getTransaction().begin();
+            em.merge(findMyuser(userId));
+            em.getTransaction().commit();
+            return true;
+        }
+        else
+        {  
+            return false;
+        }
     }
 }
