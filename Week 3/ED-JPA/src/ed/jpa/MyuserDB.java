@@ -86,10 +86,15 @@ public class MyuserDB {
     
     public MyuserDTO getRecord(String userId)
     { 
+        
         try {
-            if (findMyuser(userId) == null )  
+            Myuser muser = new Myuser();
+            muser = findMyuser(userId);
+            if (muser == null )  
             {
-                return null;
+                MyuserDTO gDTO = new MyuserDTO(muser.getUserid(),muser.getName(),muser.getPassword(),
+                                    muser.getEmail(),muser.getPhone(), muser.getAddress(),muser.getSecqn(),muser.getSecans());
+                return gDTO;
             }
             else
             {
