@@ -88,17 +88,13 @@ public class MyuserDB {
     { 
         
         try {
-            Myuser muser = new Myuser();
-            muser = findMyuser(userId);
-            if (muser == null )  
+            if (findMyuser(userId)!= null )  
             {
-                MyuserDTO gDTO = new MyuserDTO(muser.getUserid(),muser.getName(),muser.getPassword(),
-                                    muser.getEmail(),muser.getPhone(), muser.getAddress(),muser.getSecqn(),muser.getSecans());
-                return gDTO;
+                return myDAO2DTO(findMyuser(userId));
             }
             else
             {
-                return myDAO2DTO(findMyuser(userId));
+                return null;
             }
         } 
         catch (Exception ex) 
@@ -134,7 +130,7 @@ public class MyuserDB {
         if (findMyuser(userId) != null)
         {
             em.getTransaction().begin();
-            em.merge(findMyuser(userId));
+            em.remove(findMyuser(userId));
             em.getTransaction().commit();
             return true;
         }
