@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Gam
+ * @author gamal
  */
 public class MyuserDTO implements Serializable 
 {
@@ -45,9 +45,8 @@ public class MyuserDTO implements Serializable
     public String getSecAns() {
         return secAns;
     }
-
-    public MyuserDTO(String userid, String name, String password, String email, String phone, String address, String secQn, String secAns) 
-    {
+    
+     public MyuserDTO(String userid, String name, String password, String email, String phone, String address, String secQn, String secAns) {
         this.userid = userid;
         this.name = name;
         this.password = password;
@@ -56,8 +55,7 @@ public class MyuserDTO implements Serializable
         this.address = address;
         this.secQn = secQn;
         this.secAns = secAns;
-    }
-    
+     }
     private final String userid;
     private final String name;
     private final String password;
@@ -65,5 +63,5 @@ public class MyuserDTO implements Serializable
     private final String phone;
     private final String address;
     private final String secQn;
-    private final String secAns;  
+    private final String secAns;
 }

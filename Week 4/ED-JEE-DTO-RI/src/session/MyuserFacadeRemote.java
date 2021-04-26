@@ -9,11 +9,9 @@ import javax.ejb.Remote;
 
 /**
  *
- * @author Gam
+ * @author gamal
  */
 @Remote
 public interface MyuserFacadeRemote {
-
-    boolean createRecord(MyuserDTO myuserDTO);
     
 }
