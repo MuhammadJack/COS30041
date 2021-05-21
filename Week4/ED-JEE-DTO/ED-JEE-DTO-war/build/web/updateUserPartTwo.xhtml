@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>User does exist Update the User</title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <table style="width:100%">
+            <tr>
+                <th>UserID</th>
+                <th>Name</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>SecQn</th>
+                <th>SecAns</th>
+            </tr>
+            <tr>
+                <th>#{myuserManagedBean.userid}</th>
+                <th>#{myuserManagedBean.name}</th>
+                <th>#{myuserManagedBean.password}</th>
+                <th>#{myuserManagedBean.email}</th>
+                <th>#{myuserManagedBean.phone}</th>
+                <th>#{myuserManagedBean.address}</th>
+                <th>#{myuserManagedBean.secQn}</th>
+                <th>#{myuserManagedBean.secAns}</th>
+            </tr>
+        </table>
+        <h:form>
+            <p>
+                Enter the New Details
+                <table style="width:50%">
+                    <h:inputHidden value="#{myuserManagedBean.userid}" id="userid"></h:inputHidden>
+                    <tr>
+                        <th>Name</th>
+                        <th>
+                            <h:inputText id="Name" value="#{myuserManagedBean.name}"
+                                         required="true"
+                                         requiredMessage="The Name field cannot be empty!"
+                                         size="6" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Password</th>
+                        <th>
+                            <h:inputText id="Password" value="#{myuserManagedBean.password}"
+                                         required="true"
+                                         requiredMessage="The Password field cannot be empty!"
+                                         size="6" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <th>
+                            <h:inputText id="Email" value="#{myuserManagedBean.email}"
+                                         required="true"
+                                         requiredMessage="The Email field cannot be empty!"
+                                         size="6" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <th>
+                            <h:inputText id="Phone" value="#{myuserManagedBean.phone}"
+                                         required="true"
+                                         requiredMessage="The Phone field cannot be empty!"
+                                         size="6" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <th>
+                            <h:inputText id="Address" value="#{myuserManagedBean.address}"
+                                         required="true"
+                                         requiredMessage="The Address field cannot be empty!"
+                                         size="6" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>SecQn</th>
+                        <th>
+                            <h:inputText id="SecQn" value="#{myuserManagedBean.secQn}"
+                                         required="true"
+                                         requiredMessage="The SecQn field cannot be empty!"
+                                         size="6" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>SecAns</th>
+                        <th>
+                            <h:inputText id="SecAns" value="#{myuserManagedBean.secAns}"
+                                         required="true"
+                                         requiredMessage="The SecAns field cannot be empty!"
+                                         size="6" />
+                        </th>
+                    </tr>
+                </table>
+            </p>
+            <h:commandButton id="submit" value="Submit"
+                             action="#{myuserManagedBean.updateUser}" />
+        </h:form>
+    </h:body>
+</html>

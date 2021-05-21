@@ -6,12 +6,16 @@
             <file>file:/C:/Users/gamal/Documents/GitHub/COS30041/Week4/ED-JEE-DTO/ED-JEE-DTO-war/web/mainmenu.xhtml</file>
             <file>file:/C:/Users/gamal/Documents/GitHub/COS30041/Week4/ED-JEE-DTO/ED-JEE-DTO-war/web/deleteUser.xhtml</file>
             <file>file:/C:/Users/gamal/Documents/GitHub/COS30041/Week4/ED-JEE-DTO/ED-JEE-DTO-war/web/addUserSuccess.xhtml</file>
-            <file>file:/C:/Users/gamal/Documents/GitHub/COS30041/Week4/ED-JEE-DTO/ED-JEE-DTO-war/web/addUserFailure.xhtml</file>
+            <file>file:/C:/Users/gamal/Documents/GitHub/COS30041/Week4/ED-JEE-DTO/ED-JEE-DTO-war/src/java/web/sendEmail.java</file>
+            <file>file:/C:/Users/gamal/Documents/GitHub/COS30041/Week4/ED-JEE-DTO/ED-JEE-DTO-war/src/java/web/MyAuthenticator.java</file>
             <file>file:/C:/Users/gamal/Documents/GitHub/COS30041/Week4/ED-JEE-DTO/ED-JEE-DTO-war/web/index.html</file>
             <file>file:/C:/Users/gamal/Documents/GitHub/COS30041/Week4/ED-JEE-DTO/ED-JEE-DTO-war/src/java/web/myuserManagedBean.java</file>
             <file>file:/C:/Users/gamal/Documents/GitHub/COS30041/Week4/ED-JEE-DTO/ED-JEE-DTO-war/web/addUser.xhtml</file>
             <file>file:/C:/Users/gamal/Documents/GitHub/COS30041/Week4/ED-JEE-DTO/ED-JEE-DTO-war/web/undercon.html</file>
             <file>file:/C:/Users/gamal/Documents/GitHub/COS30041/Week4/ED-JEE-DTO/ED-JEE-DTO-war/web/WEB-INF/faces-config.xml</file>
+            <file>file:/C:/Users/gamal/Documents/GitHub/COS30041/Week4/ED-JEE-DTO/ED-JEE-DTO-war/web/updateUserPartTwo.xhtml</file>
+            <file>file:/C:/Users/gamal/Documents/GitHub/COS30041/Week4/ED-JEE-DTO/ED-JEE-DTO-war/web/addUserFailure.xhtml</file>
+            <file>file:/C:/Users/gamal/Documents/GitHub/COS30041/Week4/ED-JEE-DTO/ED-JEE-DTO-war/web/updateUser.xhtml</file>
         </group>
     </open-files>
 </project-private>
